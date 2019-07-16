@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Calculator</title>
+
+<!-- *********************************************************** CSS ***********************************************************/-->
+
+<style type="text/css">
+
+	table tr td	{padding-left: 13px;} /*For all the buttons except the screen*/
+
+	table{border: 1px solid black;} /*For the whole table*/
+
+	.button {						/*For the numeric buttons*/								
+ 		background-color: lightgrey;
+ 		border: 2px solid black;
+  		color: black;
+  		padding: 15px 32px;
+  		text-align: center;
+  		text-decoration: none;
+  		display: inline-block;
+  		font-size: 15px;
+  		border-radius: 12px;
+  		box-shadow: 0 9px #999;
+  		padding: 25px;}
+	
+	#operation{						/*For the opeartion buttons*/
+		background-color: darkgrey;
+  		border: 2px solid black;
+  		color: black;
+  		padding: 15px;
+  		text-align: center;
+  		text-decoration: none;
+  		display: inline-block;
+  		font-size: 15px;	
+  		border-radius: 12px;
+  		padding: 30px;}
+
+	#result{ background-color: #0066FF; color: white;} /*For the equalto button*/
+
+	#ac{border-radius: 50%;color: red;} /*For the all clear button*/
+
+	input[type="text"], textarea {  background-color : white; } /*For the text box/screen */
+
+	#operation:hover{background-color: yellow;} /* On hover operators */
+	
+	.button:hover {background-color: red; color: black;} /* On hover numeric */
+	
+	#result:hover{background-color: midnightblue; color: white} /* On hover equalto */
+
+	.button:active, #operation:active, #result:active {				/* For shadow and click effect */
+  		background-color: #3e8e41;
+  		box-shadow: 0 5px #666;
+  		transform: translateY(4px);}
+
+	#ac:hover{background-color: red;color: black}  /* On hover all clear */
+
+</style>
+
+</head>
+<!-- *********************************************************** Java Script ***********************************************************/-->
+<script>
+	function change(val) 
+         { 
+             document.getElementById("screen").value+=val 
+         } 
+           
+         //function that evaluates the digit and return result 
+         function res() 
+         { 
+             let x = document.getElementById("screen").value 
+             let y = eval(x) 
+             document.getElementById("screen").value = y 
+         } 
+           
+         //function that clear the display 
+         function clr() 
+         { 
+             document.getElementById("screen").value = "" 
+         } 
+</script>
+
+<body>
+<table bgcolor="white" align="center">
+<tr><th colspan="4"><input style="height:80px;width:350px ;font-size:14pt;" type="text" readonly="readonly" id="screen"/></th></tr>
+<tr><td><input type="button" class="button" value="1" onclick="change(1)"/></td>
+<td><input type="button" class="button" value="2" onclick="change(2)"/></td>
+<td><input type="button" class="button" value="3" onclick="change(3)"/></td>
+<td><input type="button" class="button" value="+" onclick="change('+')" id="operation" /></td></tr>
+<tr><td><input type="button" class="button" value="4" onclick="change(4)"/></td>
+<td><input type="button" class="button" value="5" onclick="change(5)"/></td>
+<td><input type="button" class="button" value="6" onclick="change(6)"/></td>
+<td><input type="button" class="button" value="-" onclick="change('-')" id="operation"/></td></tr>
+<tr><td><input type="button" class="button" value="7" onclick="change(7)"/></td>
+<td><input type="button" class="button" value="8" onclick="change(8)"/></td>
+<td><input type="button" class="button" value="9" onclick="change(9)"/></td>
+<td><input type="button" class="button" value="*" onclick="change('*')" id="operation"/></td></tr>
+<tr><td><input type="button" class="button" value="0" onclick="change(0)"/></td>
+<td><input type="button" class="button" value="." onclick="change('.')"/></td>
+<td><input type="button" class="button" value="=" onclick="res()" id="result" /></td>
+<td><input type="button" class="button" value="/" onclick="change('/')" id="operation"/></td></tr>
+<tr><td colspan="4"><input type="button" class="button" value="C" onclick="clr()" id="ac" /></td></tr>
+</table>
+<br>
+<br>
+<p><b>NOTE:</b><br>Please press the operator buttons only once </p>
+</body>
+</html>
