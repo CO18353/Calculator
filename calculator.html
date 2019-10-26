@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>calculator</title>
+	<style type="text/css">
+		.number {
+			border: groove;
+			background-color: #424949;
+			height:55px;
+			width:60px;
+			border-radius: 50%;
+			outline: none;
+			font-size: 25px ;
+			font-family:'Lato';
+			font-weight: 200;
+			color: #ECF0F1;
+		}
+		.symbol {
+			border: groove;
+			background-color:#F4D03F;
+			height: 55px;
+			width: 60px;
+			border-radius: 50%;
+			outline: none;
+			font-family:'Lato';
+			font-size: 25px ;
+			color: #212F3D;
+		}
+
+	</style>
+	<script type="text/javascript">
+		var num=Array(10),i=0,len,sum=0,sub,div,mul=1,operation=0,temp="";
+		
+		function input(nums) {
+			temp=temp + nums;
+			document.getElementById("txt").value=temp;
+			num[i]=parseInt(temp);
+			len=i;
+		}
+
+		function add() {
+			var j;
+			for(j=0;j<=len;j++)
+			{
+				sum=sum+num[j];
+			}
+			num[0]=sum;
+			i=0;
+			return sum;
+		}
+
+		function subtract() {
+			var j;
+			sub=num[0];
+			for(j=0;j<len;j++)
+			{
+				sub=sub-num[j+1];
+			}
+			num[0]=sub;
+			i=0;
+			return sub;
+		}
+
+		function multiply() {
+			var j;
+			for(j=0;j<=len;j++)
+			{
+				mul=mul*num[j];
+			}
+			num[0]=mul;
+			i=0;
+			return mul;
+		}
+
+		function divide() {
+			var j;
+			div=num[0];
+			for(j=0;j<len;j++)
+			{
+				div=div/num[j+1];
+			}
+			num[0]=div;
+			i=0;
+			return div;
+		}
+
+		function result() {
+			var a;
+			switch(operation)
+			{
+				case 1:
+				{  
+					a=add();
+			  	document.getElementById("txt").value=a;
+      	  break;
+      	}
+
+      	case 2:
+				{  
+					a=subtract();
+			  	document.getElementById("txt").value=a;
+			  	break;
+      	}
+
+      	case 3:
+				{  
+					a=multiply();
+			  	document.getElementById("txt").value=a;
+			  	break;
+      	}
+
+     		case 4:
+				{  
+					a=divide();
+			  	document.getElementById("txt").value=a;
+			  	break;
+			  }
+      }
+		}
+		
+		function erase() {
+			document.getElementById("txt").value="";
+			for(j=0;j<=len;j++)
+			{
+				num[j]=0;
+			}
+			i=0;
+			temp="";
+			sum=0;
+			div=0;
+			mul=1;
+			operation=0;
+		}
+
+		function change(op,id) {
+				if (operation) {
+					result();
+				}
+				
+				operation=op;
+				document.getElementById("txt").value="";
+				document.getElementById(id).style.backgroundColor="#FCF3CF";
+				document.getElementById(id).style.backgroundColor="#F4D03F";
+				temp="";
+				i++;
+		}
+
+	</script>
+</head>
+
+<body bgcolor="#D0D3D4">
+<table align="center" style="border:groove; width: 300px; height: 400px; border-style:outset; border-width: 6px; background-color: black;" cellspacing="10">
+<tr><td><input type="button" value="AC" onclick="erase()" class="symbol" /></td>
+<td colspan="5"><input type="text" id="txt" style="width: 220px; height: 40px; font-family:'Lato'; font-size: 25px; border:groove; border-radius:10px; outline: none;" maxlength="15"/></td></tr>
+<tr><td><input type="button" value="7" onclick="input(7)" class="number" /></td>
+<td><input type="button" value="8" onclick="input(8)" class="number" /></td>
+<td><input type="button" value="9" onclick="input(9)" class="number" /></td>
+<td><input type="button" value="/" id="txt_div" onclick="change(4,id)" class="symbol" /></td></tr>
+<tr><td class=""><input type="button" value="4" onclick="input(4)" class="number" /></td>
+<td><input type="button" value="5" onclick="input(5)" class="number" /></td>
+<td><input type="button" value="6" onclick="input(6)" class="number" /></td>
+<td><input type="button" value="-" id="txt_sub" onclick="change(2,id)" class="symbol" /></td></tr>
+<tr><td><input type="button" value="1" onclick="input(1)" class="number" /></td>
+<td><input type="button" value="2" onclick="input(2)" class="number" /></td>
+<td><input type="button" value="3" onclick="input(3)" class="number" /></td>
+<td><input type="button" value="+" id="txt_add" onclick="change(1,id)" class="symbol" /></td></tr>
+<tr><td colspan="2"><input type="button" value="0" onclick="input(0)"  style="width: 140px; border-radius: 30px" class="number" /></td>
+<td><input type="button" value="=" onclick="result()" class="symbol" /></td>
+<td><input type="button" value="x" id="txt_mul" onclick="change(3,id)" class="symbol" /></td></tr>
+</table>
+</body>
+</html>
